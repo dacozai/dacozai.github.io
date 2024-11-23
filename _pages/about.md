@@ -16,6 +16,7 @@ news: false # includes a list of news items
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
+
 Small minds are concerned with the extraordinary, great minds with the `ordinary`
 
 Amateurs practice until they get it right; Professionals practice until they `can't get it wrong`.
