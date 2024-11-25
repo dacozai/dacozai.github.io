@@ -12,12 +12,14 @@ toc:
   beginning: true
 ---
 
-This post is **an algorithm note** to me but I hope this could help others too. My problem source is from <a href="https://leetcode.com/">LeetCode</a>, which is nothing but simple.  
+This post is **an algorithm note** to me but I hope this could help others too. My problem source is from <a href="https://leetcode.com/">LeetCode</a>, which is nothing but simple.
 
 # CheatSheet
+
 In this section, some useful in-built or template like solution will be listed here. Besides, I will further clarify some misunderstood concepts for people to review before attending the coding interview.
+
 ```rust
-/// Sort 
+/// Sort
 /// Reference -- https://doc.rust-lang.org/std/primitive.slice.html#method.sort_unstable
 /// There are typcial and useful tips
 let arr = vec![4, -5, 1, -3, 2];
@@ -82,12 +84,13 @@ ss.insert(the_index, 4);
 ```
 
 # Algorithms
-The backbone is based on the interview crash course, <a href="https://leetcode.com/explore/featured/card/leetcodes-interview-crash-course-data-structures-and-algorithms/">Data Structures and Algorithms</a>, from LeetCode. Yes, I recommend this course when you are busy at work and you need a proper way to learn algorithm gradually. Like I said, this is a post about the techniques and remiders to myself. Therefore, it might look incoherent to you unlike the course. 
+
+The backbone is based on the interview crash course, <a href="https://leetcode.com/explore/featured/card/leetcodes-interview-crash-course-data-structures-and-algorithms/">Data Structures and Algorithms</a>, from LeetCode. Yes, I recommend this course when you are busy at work and you need a proper way to learn algorithm gradually. Like I said, this is a post about the techniques and remiders to myself. Therefore, it might look incoherent to you unlike the course.
 
 But, I will list many useful techniques and why I failed to solve some problems and what was I thinking atm.
+
 ## Array and strings
 
 ### Array
 
 ### String
-
