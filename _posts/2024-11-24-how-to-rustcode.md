@@ -113,7 +113,7 @@ match some_number() {
     Some(n)      => println!("Not interesting... {}", n),
     _            => (),
 }
-// >>> The Answer: 42! 
+// >>> The Answer: 42!
 
 // let ... else early return
 fn dfs(head: &Option<Box<ListNode>>) -> bool {
@@ -124,13 +124,13 @@ fn dfs(head: &Option<Box<ListNode>>) -> bool {
 }
 
 /// For loop
-/// 
+///
 /// 1. loop for reference reading
-/// for name in names.iter() 
-/// 2. loop and then consume the data source, meaning that elements are moved out from the array 
-/// for name in names.into_iter() 
+/// for name in names.iter()
+/// 2. loop and then consume the data source, meaning that elements are moved out from the array
+/// for name in names.into_iter()
 /// 3. loop for mut reference, so that we can modify the element directly
-/// for name in names.iter_mut() 
+/// for name in names.iter_mut()
 ```
 
 # Algorithms
@@ -146,7 +146,9 @@ But, I will list many useful techniques and why I failed to solve some problems 
 ### String
 
 ## Linked List
+
 In this section, it is difficult when using Rust because there are more restrictions placed on flow manipulation.
+
 ```rust
 /// Exalpme Problem - https://leetcode.com/problems/add-two-numbers/description/
 pub fn exec_function(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
@@ -156,7 +158,7 @@ pub fn exec_function(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Op
     let mut cursor = &mut base;
 
     // Use `as_ref` to get references to the inner data of `Option<Box<ListNode>>`.
-    // Without `as_ref`, unwrapping would consume the `Option` and move its value, 
+    // Without `as_ref`, unwrapping would consume the `Option` and move its value,
     // which we don't want as we only need references.
     let mut cur_l1 = l1.as_ref();
     let mut cur_l2 = l2.as_ref();
