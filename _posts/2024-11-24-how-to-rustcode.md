@@ -81,6 +81,56 @@ let target = 4;
 let the_index = ss.binary_search(&target).unwrap_or_else(|insert_index| insert_index);
 //if not found can be inserted into
 ss.insert(the_index, 4);
+
+/// Match tips
+// match with the condition
+#[allow(dead_code)]
+enum Temperature {
+    Celsius(i32),
+    Fahrenheit(i32),
+}
+let temperature = Temperature::Celsius(35);
+match temperature {
+    Temperature::Celsius(t) if t > 30 => println!("{}C is above 30 Celsius", t),
+    // The `if condition` part ^ is a guard
+    Temperature::Celsius(t) => println!("{}C is equal to or below 30 Celsius", t),
+    Temperature::Fahrenheit(t) if t > 86 => println!("{}F is above 86 Fahrenheit", t),
+    Temperature::Fahrenheit(t) => println!("{}F is equal to or below 86 Fahrenheit", t),
+}
+// match with binding
+let age = 15;
+match age() {
+    0             => println!("I haven't celebrated my first birthday yet"),
+    n @ 1  ..= 12 => println!("I'm a child of age {:?}", n),
+    n @ 13 ..= 19 => println!("I'm a teen of age {:?}", n),
+    n             => println!("I'm an old person of age {:?}", n),
+}
+// >>> Tell me what type of person you are
+// >>> I'm a teen of age 15
+let some_num = Some(42);
+match some_number() {
+    Some(n @ 42) => println!("The Answer: {}!", n),
+    Some(n)      => println!("Not interesting... {}", n),
+    _            => (),
+}
+// >>> The Answer: 42!
+
+// let ... else early return
+fn dfs(head: &Option<Box<ListNode>>) -> bool {
+    // this is called let ... else syntax for early return, which is valid after Rust 1.65
+    // reference -- https://doc.rust-lang.org/rust-by-example/flow_control/let_else.html
+    let Some(hh) = head else { return true };
+    false
+}
+
+/// For loop
+///
+/// 1. loop for reference reading
+/// for name in names.iter()
+/// 2. loop and then consume the data source, meaning that elements are moved out from the array
+/// for name in names.into_iter()
+/// 3. loop for mut reference, so that we can modify the element directly
+/// for name in names.iter_mut()
 ```
 
 # Algorithms
@@ -94,3 +144,47 @@ But, I will list many useful techniques and why I failed to solve some problems 
 ### Array
 
 ### String
+
+## Linked List
+
+In this section, it is difficult when using Rust because there are more restrictions placed on flow manipulation.
+
+```rust
+/// Exalpme Problem - https://leetcode.com/problems/add-two-numbers/description/
+pub fn exec_function(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    // Initialize a dummy node to act as the base of the resulting list
+    let mut base = ListNode { val: 0, next: None };
+    // Get a mutable reference to the dummy node to act as our cursor
+    let mut cursor = &mut base;
+
+    // Use `as_ref` to get references to the inner data of `Option<Box<ListNode>>`.
+    // Without `as_ref`, unwrapping would consume the `Option` and move its value,
+    // which we don't want as we only need references.
+    let mut cur_l1 = l1.as_ref();
+    let mut cur_l2 = l2.as_ref();
+    let mut carry = 0i32;
+
+    // Iterate as long as there are nodes in either list or a carry remains
+    while cur_l1.is_some() || cur_l2.is_some() || carry > 0 {
+        let mut next_val = carry; // Start with the carry from the previous operation
+        if let Some(node) = cur_l1 {
+            next_val += node.val; // Add the value from the current node in `l1`
+            cur_l1 = node.next.as_ref(); // Move to the next node in `l1`
+        }
+        if let Some(node) = cur_l2 {
+            next_val += node.val; // Add the value from the current node in `l2`
+            cur_l2 = node.next.as_ref(); // Move to the next node in `l2`
+        }
+
+        // Create a new node for the current sum (mod 10)
+        let the_node = ListNode { val: next_val % 10, next: None };
+        carry = next_val / 10; // Update the carry for the next iteration
+
+        // Assign the new node to `cursor.next` and move the cursor forward
+        cursor.next = Some(Box::new(the_node));
+        cursor = cursor.next.as_mut().unwrap(); // Advance the cursor to the newly added node
+    }
+
+    base.next // Return the resulting list, skipping the dummy node
+}
+```
