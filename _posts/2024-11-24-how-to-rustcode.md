@@ -144,6 +144,27 @@ But, I will list many useful techniques and why I failed to solve some problems 
 ### Array
 
 ### String
+```rust
+// turn string
+let chs = vec!['h', 'e', 'l', 'l', 'o'];
+let s = chs.into_iter().collect::<String>();
+let bs = vec![b'h', b'e', b'l', b'l', b'o'];
+let s = String::from_utf8(bs);
+
+// in-replace for the extended String
+let mut bytes = s.into_bytes();
+let mut chunk_end_i = bytes.len();
+bytes.extend(std::iter::repeat(0).take(spaces.len()));
+
+for (i, space) in spaces.into_iter().enumerate().rev() {
+    let space = space as usize;
+    bytes.copy_within(space..chunk_end_i, space + i + 1);
+    bytes[space + i] = b' ';
+    chunk_end_i = space;
+}
+
+unsafe { String::from_utf8_unchecked(bytes) }
+```
 
 ## Linked List
 
