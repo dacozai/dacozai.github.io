@@ -11,7 +11,8 @@ related_posts: false
 ---
 
 ## Match Problem
-Here is the original [post](https://users.rust-lang.org/t/this-match-feature-is-awful/122046/38). Basically, the pain point is that people want to use the match arm but, somehow, OP encountered either typo or non-existed matching. Rust did not alert to the OP. Therefore, it becomes very difficult to find out the problem. 
+
+Here is the original [post](https://users.rust-lang.org/t/this-match-feature-is-awful/122046/38). Basically, the pain point is that people want to use the match arm but, somehow, OP encountered either typo or non-existed matching. Rust did not alert to the OP. Therefore, it becomes very difficult to find out the problem.
 
 ```rust
 #[test]
@@ -34,10 +35,13 @@ fn awful() {
     assert!(!is_gold); //panic: is_gold == true
 }
 ```
+
 ### Why
+
 Based on the [Match Arm documentation](https://doc.rust-lang.org/book/ch06-02-match.html#catch-all-patterns-and-the-_-placeholder), the next non-matching item will become the so-called `catch-all-patterns`. Sometimes, we use `_` as the non-binding but match all. But, we can actually use a variable to represent as the match-all. Therefore, it stucks at **God** item which return true.
 
 ### Solution
+
 ```rust
 enum Foo {
     A,
@@ -56,5 +60,5 @@ fn foo(foo: Foo) {
     }
 }
 ```
-As the doc mentioned, when we declare to catach-all, it is a binded variable to receive the match arm result. Therefore, we can use the attr called `#[deny(unused_variables)]` to force MUST-use of the variable. This is an actual brilliant workaround to solve this pain point!
 
+As the doc mentioned, when we declare to catach-all, it is a binded variable to receive the match arm result. Therefore, we can use the attr called `#[deny(unused_variables)]` to force MUST-use of the variable. This is an actual brilliant workaround to solve this pain point!

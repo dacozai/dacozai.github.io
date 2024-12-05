@@ -144,6 +144,7 @@ But, I will list many useful techniques and why I failed to solve some problems 
 ### Array
 
 ### String
+
 ```rust
 // turn string
 let chs = vec!['h', 'e', 'l', 'l', 'o'];
