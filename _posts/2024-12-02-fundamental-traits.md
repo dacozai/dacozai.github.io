@@ -38,4 +38,5 @@ Note: Copy and Drop are mutually exclusive. Therefore, when a type dervies Drop,
 [Display](https://doc.rust-lang.org/std/fmt/trait.Display.html) is similar to [Debug](https://doc.rust-lang.org/std/fmt/trait.Debug.html) but `Debug` is for debugging usage. Besides, when a type derive `Display`, it automatically implement [ToString](https://doc.rust-lang.org/std/string/trait.ToString.html). When a type implements `fmt::Display`, it can faithfully be represented as UTF-8 [reference](https://doc.rust-lang.org/std/fmt/index.html#fmtdisplay-vs-fmtdebug). 
 Lastly, `Display` is recommned to be implemented compared with `ToString`.
 
+To Be Continued
 # In-Built fns
